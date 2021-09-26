@@ -5,16 +5,17 @@
  */
 package com.odam.mensajes_app;
 
+import com.odam.dao.MyConnection;
 import java.sql.Connection;
 
 /**
  *
  * @author David
  */
-public class Inicio {
+public class App {
     public static void main(String[] args){
         
-        Conexion conexion = new Conexion();
+        MyConnection conexion = new MyConnection();
         
         try (Connection cnx = conexion.get_connection()){
             

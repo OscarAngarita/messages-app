@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.odam.mensajes_app;
+package com.odam.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author David
  */
-public class Conexion {
+public class MyConnection {
     public Connection get_connection(){
         Connection connection = null;
         try{
