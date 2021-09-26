@@ -5,8 +5,10 @@
  */
 package com.odam.mensajes_app;
 
-import com.odam.dao.MyConnection;
-import java.sql.Connection;
+//import com.odam.dao.MyConnection;
+import com.odam.messages.MessageService;
+//import java.sql.Connection;
+import java.util.Scanner;
 
 /**
  *
@@ -15,12 +17,49 @@ import java.sql.Connection;
 public class App {
     public static void main(String[] args){
         
-        MyConnection conexion = new MyConnection();
+        Scanner scanner = new Scanner(System.in);
         
-        try (Connection cnx = conexion.get_connection()){
+        int option = 0;
+        
+        //System menu
+        do {
+            System.out.println("--------------------");
+            System.out.println("Aplicación de mensajes");
+            System.out.println("1. Crear mensaje");
+            System.out.println("2. Listar mensajes");
+            System.out.println("3. Editar mensaje");
+            System.out.println("4. Eliminar mensaje");
+            System.out.println("5. Salir");
+            //Leer opción del usuario
+            option = scanner.nextInt();
             
-        } catch(Exception e){
-            System.out.println(e);
-        }
+            switch(option){
+                case 1:
+                    MessageService.createMessage();
+                    break;
+                case 2:
+                    MessageService.listMessages();
+                    break;
+                case 3:
+                    MessageService.deleteMessage();
+                    break;
+                case 4:
+                    MessageService.editMessage();
+                    break;
+                default:
+                    break;
+            }
+        
+        } while(option != 5);
+        
+        
+//        MyConnection conexion = new MyConnection();
+//        
+//        try (Connection cnx = conexion.get_connection()){
+//            
+//        } catch(Exception e){
+//            System.out.println(e);
+//        }
+        
     }
 }
