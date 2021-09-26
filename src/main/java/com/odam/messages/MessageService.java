@@ -7,6 +7,7 @@ package com.odam.messages;
 
 import com.odam.dao.MessageDAO;
 import com.odam.models.Message;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -31,7 +32,16 @@ public class MessageService {
     }
     
     public static void listMessages() {
-    
+        List<Message> messageList = MessageDAO.readMessageDB();
+
+        for (Message messageItem: messageList) {
+            System.out.println("---------------------------------");
+            System.out.println("MESSAGE #" + (messageList.indexOf(messageItem) + 1));
+            System.out.println("ID: " + messageItem.getIdMessage());
+            System.out.println("Message: " + messageItem.getMessage());
+            System.out.println("Author: " + messageItem.getMessageAuthor());
+            System.out.println("Date: " + messageItem.getMessageDate());
+        }
     }
     
     public static void deleteMessage() {
