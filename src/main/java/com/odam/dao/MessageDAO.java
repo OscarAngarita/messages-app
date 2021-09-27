@@ -83,17 +83,19 @@ public class MessageDAO {
                 String query = "DELETE FROM mensajes WHERE mensajes.id_mensaje = ?";
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setInt(1, idMessage);
-                preparedStatement.executeUpdate();
-                System.out.println("El mensaje fue eliminado.");
+                int rowsUpdated = preparedStatement.executeUpdate();
+                if(rowsUpdated != 0){
+                    System.out.println("El mensaje fue eliminado exitosamente.");
+                } else {
+                    System.out.println("El mensaje no se pudo encontrar. Por favor ingrese un id valido.");
+                }
             } catch(SQLException e){
                  System.out.println(e);
                  System.out.println("El mensaje no pudo ser eliminado.");
             }
-        
         } catch(Exception e){
             System.out.println(e);
         }
-    
     }
     
     public static void editMessageDB(Message message){
