@@ -53,8 +53,20 @@ public class MessageService {
     }
     
     public static void editMessage() {
-    
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Indica el ID del mensaje a editar: ");
+        int idMessage = Integer.parseInt(scanner.nextLine());
+        
+        System.out.println("Escribe tu nuevo mensaje: ");
+        String messageText = scanner.nextLine();
+        
+        
+        Message editedMessage = new Message();
+        editedMessage.setIdMessage(idMessage);
+        editedMessage.setMessage(messageText);
+        
+        MessageDAO.editMessageDB(editedMessage);
     }
-    
-    
 }
+    
+    
