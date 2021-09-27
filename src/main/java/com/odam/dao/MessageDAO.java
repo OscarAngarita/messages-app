@@ -22,22 +22,22 @@ public class MessageDAO {
     public static void createMessageDB(Message message){
         MyConnection dbConnect = new MyConnection();
         
-        try (Connection connection = dbConnect.get_connection()){
-            
+        try {
+            Connection connection = dbConnect.get_connection();
             PreparedStatement preparedStatement = null;
             try{
                 String query = "INSERT INTO mensajes (mensaje, autor_mensaje) VALUES (?,?)";
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, message.getMessage());
                 preparedStatement.setString(2, message.getMessageAuthor());
-                preparedStatement.executeUpdate(); //Orden a la db para realisar la consulta
+                preparedStatement.executeUpdate(); //Orden a la db para realizar la consulta
                 
                 System.out.println("Mensaje creado");
             } catch(SQLException e){
                  System.out.println(e);
             }
         
-        } catch(SQLException e){
+        } catch(Exception e){
             System.out.println(e);
         }
     }
@@ -47,8 +47,8 @@ public class MessageDAO {
         List<Message> messageList = new ArrayList<>();
         
         MyConnection dbConnect = new MyConnection();
-        try (Connection connection = dbConnect.get_connection()){
-            
+        try{
+            Connection connection = dbConnect.get_connection();
             PreparedStatement preparedStatement = null;
             ResultSet resultSet = null;
             
@@ -73,6 +73,26 @@ public class MessageDAO {
     }
     
     public static void deleteMessageDB(int idMessage){
+        
+        MyConnection dbConnect = new MyConnection();
+        
+        try {
+            Connection connection = dbConnect.get_connection();
+            PreparedStatement preparedStatement = null;
+            try{
+                String query = "DELETE FROM mensajes WHERE mensajes.id_mensaje = ?";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, idMessage);
+                preparedStatement.executeUpdate();
+                System.out.println("El mensaje fue eliminado.");
+            } catch(SQLException e){
+                 System.out.println(e);
+                 System.out.println("El mensaje no pudo ser eliminado.");
+            }
+        
+        } catch(Exception e){
+            System.out.println(e);
+        }
     
     }
     
